@@ -1,0 +1,38 @@
+{
+    "login": "Loghează-te",
+    "password": "Parola",
+    "usrname_email": "Nume de utilizator sau email",
+  
+    "register_form": "Formular înregistrare",
+    "f_name": "Prenume",
+    "l_name": "Nume",
+    "email": "Email",
+    "conf_pass": "Confirma parola",
+    "group": "Grupa:",
+    "semigroup": "Semigrupa:",
+    "agree_terms": "Sunt de acord cu termenii şi condiţiile.",
+    "register": "Înregistrează-te",
+  
+    "old_password": "Parola veche",
+    "new_password": "Parola noua",
+    "conf_new_pass": "Confirma parola noua",
+    "change_password_form": "Schimbați parola",
+    "home": "Acasă",
+  
+    "logout": "Deconectați-vă",
+    "create_accont": "Creează cont",
+    "wrong_login": "Numele de utilizator sau parola sunt greșite!",
+    "incomplete_data": "Vă rugăm să completați toate datele!",
+    "invalid_email": "Adresa de email nu este valida!",
+    "invalid_phone": "Numărul de telefon trebuie să aibă 10 cifre!",
+    "invalid_password": "Parola nu se potrivește!",
+    "invalid_agree_terms": "Vă rugăm să fiți de acord cu Termenii și condițiile!",
+    "succes_create_account": "Contul dvs. a fost creat cu succes!",
+    "phone": "Număr de telefon",
+    "choose_courses": "Alegeți cursurile",
+    "general_error": "Ceva n-a mers bine",
+    "description": "Descriere",
+    "send": "Trimite",
+    "back": "ÎNAPOI"
+  }
+  

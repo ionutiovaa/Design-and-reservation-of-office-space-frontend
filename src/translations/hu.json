@@ -1,0 +1,38 @@
+{
+    "login": "Belépés",
+    "password": "Jelszó",
+    "usrname_email": "Felhasználónév vagy e-mail",
+  
+    "register_form": "Regisztrációs űrlap",
+    "f_name": "Keresztnév",
+    "l_name": "Vezetéknév",
+    "email": "Email",
+    "conf_pass": "Jelszó megerősítése",
+    "group": "Csapat:",
+    "semigroup": "Félcsoporttal:",
+    "agree_terms": "Elfogadom a Felhasználási Feltételeket.",
+    "register": "Regisztráció",
+  
+    "old_password": "Régi jelszó",
+    "new_password": "Új jelszó",
+    "conf_new_pass": "Erősítse meg az új jelszót",
+    "change_password_form": "Jelszó módosítása",
+    "home": "Itthon",
+  
+    "logout": "Kijelentkezés",
+    "create_accont": "Fiók létrehozása",
+    "wrong_login": "A felhasználónév vagy a jelszó nem megfelelő!",
+    "incomplete_data": "Kérjük, töltse ki az összes adatot",
+    "invalid_email": "Az e-mail cím nem érvényes!",
+    "invalid_phone": "A telefonszámnak 10 számjegyből kell állnia!",
+    "invalid_password": "A jelszó nem egyezik!",
+    "invalid_agree_terms": "Kérjük, fogadja el a Felhasználási feltételeket!",
+    "succes_create_account": "Fiókod sikerrel jött létre!",
+    "phone": "Telefonszám",
+    "choose_courses": "Válassza a kurzusokat",
+    "general_error": "Valami elromlott",
+    "description": "Leírás",
+    "send": "Küld",
+    "back": "VISSZA"
+  }
+  

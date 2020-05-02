@@ -1,0 +1,37 @@
+{
+    "login": "Log In",
+    "password": "Password",
+    "usrname_email": "Username or email",
+  
+    "register_form": "Register form",
+    "f_name": "First name",
+    "l_name": "Last name",
+    "email": "Email",
+    "conf_pass": "Confirm password",
+    "group": "Group:",
+    "semigroup": "Semigroup:",
+    "agree_terms": "I agree to the terms and conditions.",
+    "register": "Register",
+  
+    "old_password": "Old password",
+    "new_password": "New password",
+    "conf_new_pass": "Confirm new password",
+    "change_password_form": "Change password",
+    "home": "Home",
+    "logout": "Log out",
+    "create_accont": "Create account",
+    "wrong_login": "Username or password is wrong!",
+    "incomplete_data": "Please complete all data",
+    "invalid_email": "The email address is not valid",
+    "invalid_phone": "The phone number must have 10 digits!",
+    "invalid_password": "Password doesn't match!",
+    "invalid_agree_terms": "Please agree to Terms and Conditions!",
+    "succes_create_account": "Your account was created with succes!",
+    "phone": "Phone number",
+    "choose_courses": "Select activities",
+    "general_error": "Something went wrong",
+    "description": "Description",
+    "send": "Send",
+    "back": "BACK"
+  }
+  

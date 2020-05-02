@@ -1,0 +1,38 @@
+{
+    "login": "Anmeldung",
+    "password": "Passwort",
+    "usrname_email": "Benutzername oder E-Mail-Adresse",
+  
+    "register_form": "Anmeldeformular",
+    "f_name": "Vorname",
+    "l_name": "Familienname",
+    "email": "E-Mail-Adresse",
+    "conf_pass": "Kennwort bestätigen",
+    "group": "Gruppen",
+    "semigroup": "Halbgruppe",
+    "agree_terms": "Ich erkenne die Allgemeinen Geschäftsbedingungen an.",
+    "register": "Registrierung",
+  
+    "old_password": "Altes Passwort",
+    "new_password": "Neues Kennwort",
+    "conf_new_pass": "Bestätige neues Passwort",
+    "change_password_form": "Passwort ändern",
+    "home": "Zuhause",
+  
+    "logout": "Ausloggen",
+    "create_accont": "Benutzerkonto anlegen",
+    "wrong_login": "Benutzername oder Passwort ist falsch!",
+    "incomplete_data": "Bitte vervollständigen Sie alle Angaben!",
+    "invalid_email": "Die E-Mail-adresse ist nicht gültig!",
+    "invalid_phone": "Die Telefonnummer muss 10-stellig sein!",
+    "invalid_password": "Passwort stimmt nicht überein!",
+    "invalid_agree_terms": "Bitte stimmen Sie den Allgemeinen Geschäftsbedingungen zu!",
+    "succes_create_account": "Ihr Account wurde mit Erfolg erstellt!",
+    "phone": "Telefonnummer",
+    "choose_courses": "Wählen Sie die Kurse",
+    "general_error": "Etwas ist schief gelaufen",
+    "description": "Beschreibung",
+    "send": "Senden",
+    "back": "ZURÜCK"
+  }
+  
