@@ -1,4 +1,7 @@
 import IRole from './Role';
+import IEchipa from './Echipa';
+import {UserType} from './UserType';
+import UserToEchipa from './UserToEchipa';
 
 export interface IUser {
     id?: number;
@@ -9,6 +12,7 @@ export interface IUser {
     username: string;
     password: string;
     token: string;
-    role: IRole;
+    userType: UserType;
+    echipe?: UserToEchipa[];
   }
   

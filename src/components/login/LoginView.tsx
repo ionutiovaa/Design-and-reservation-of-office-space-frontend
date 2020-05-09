@@ -78,6 +78,8 @@ export default class LoginView extends React.Component<any, IStateLogin> {
       isLoading: true,
     });
 
+    //console.log(username);
+    //console.log(password);
     AuthenticateService.login({
       username,
       password,

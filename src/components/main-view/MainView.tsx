@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {AppRegistry, View} from 'react-native';
 
-export default class Bootstrap extends React.Component {
+export default class MainView extends React.Component {
   render() {
     return (
       <View
@@ -13,4 +13,4 @@ export default class Bootstrap extends React.Component {
   }
 }
 
-AppRegistry.registerComponent('Bootstrap', () => Bootstrap);
+AppRegistry.registerComponent('MainView', () => MainView);

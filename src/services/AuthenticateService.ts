@@ -6,6 +6,7 @@ import {config} from '../config/config';
 
 export default class AuthenticateService {
     public static login = async (jwtRequest: IJwtRequest): Promise<IUser> => {
+      console.log(jwtRequest);
       const result = await axios.post(
         `${config.apiUrl}/authenticate`,
         jwtRequest,
