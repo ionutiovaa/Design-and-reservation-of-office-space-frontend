@@ -17,6 +17,7 @@ import LanguageService from '../../services/LanguageService';
 import {Language} from '../../data-models/Language';
 import {IUser} from '../../data-models/User';
 import AuthenticateService from '../../services/AuthenticateService';
+import { UserType } from '../../data-models/UserType';
 
 interface IStateLogin {
   username: string;

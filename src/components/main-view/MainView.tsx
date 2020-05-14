@@ -1,14 +1,24 @@
 import * as React from 'react';
-import {AppRegistry, View} from 'react-native';
+import {AppRegistry} from 'react-native';
+import {Container, View, Text} from 'native-base';
 
-export default class MainView extends React.Component {
+import CustomHeader from '../navigation-menu/custom-header/CustomHeader';
+import styles from '../navigation-menu/styles/NavMenuStyle';
+
+export default class MainView extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props);
+  }
+
   render() {
     return (
-      <View
-        accessible={true}
-        style={{borderRadius: 30, width: 60, height: 60, margin: 10}}>
-        <View style={{backgroundColor: 'magenta', width: 60, height: 60}} />
-      </View>
+      <Container>
+        <CustomHeader navigation={this.props.navigation} titleText="home">
+          <View style={{marginTop:80}}>
+            <Text>MAIN</Text>
+          </View>
+        </CustomHeader>
+      </Container>
     );
   }
 }

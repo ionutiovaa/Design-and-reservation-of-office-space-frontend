@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {Text, View, KeyboardAvoidingView} from 'react-native';
 import {AxiosError} from 'axios';
 import Snackbar from 'react-native-snackbar';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import ScButton from '../sc-button/ScButton';
 import ScTextInput from '../sc-text-input/ScTextInput';
@@ -16,6 +17,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import UserToEchipa from '../../data-models/UserToEchipa';
 import styles from './RegisterStyles';
 import IRole from '../../data-models/Role';
+import AuthenticateService from '../../services/AuthenticateService';
 
 interface IScRegisterState {
     firstname: string;
@@ -216,6 +218,8 @@ interface IScRegisterState {
             }
           }
         }
+        var type: string = UserType[typeFinal];
+        AsyncStorage.setItem('userType', type);
 
         const user: IUser = {
           //username: this.state.email.split('@')[0],
