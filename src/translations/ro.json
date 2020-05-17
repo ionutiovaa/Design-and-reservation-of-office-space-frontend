@@ -22,6 +22,12 @@
     "Administrator": "ADMINISTRATOR",
     "later": "Adăugați mai târziu.",
     "username": "Nume de utilizator",
+    "userType": "Rol",
+    "delete_account": "Șterge cont",
+    "chpass": "Schimbă parola",
+    "myAccount": "Contul meu",
+    "activities": "Activități",
+    "deleted": "Utilizator șters.",
   
     "old_password": "Parola veche",
     "new_password": "Parola noua",

@@ -14,6 +14,7 @@ import {IUser} from '../../data-models/User';
 interface IStateNavigationMenu {
     user: IUser;
     languageService: LanguageService;
+    isAdmin: boolean;
   }
   
   interface IPropsNavMenu {
@@ -29,12 +30,14 @@ interface IStateNavigationMenu {
       this.state = {
         user: Object(null),
         languageService: new LanguageService(),
+        isAdmin: true,
       };
     }
 
     
   
     async componentDidMount() {
+
       AsyncStorage.getAllKeys((err, keys) => {
         AsyncStorage.multiGet(keys, (error, stores) => {
           stores.map((result, i, store) => {
@@ -52,11 +55,27 @@ interface IStateNavigationMenu {
           });
         }
       }
+      this.setAdmin();
+    }
+
+    private setAdmin(){
+      
+      if (this.isAdministrator()){
+        this.setState({
+          isAdmin: true,
+        });
+      }   
+      else{
+        this.setState({
+          isAdmin: false,
+        })
+      }
     }
   
     private async clearStoredData() {
       await AsyncStorage.removeItem('token');
       await AsyncStorage.removeItem('logged_user');
+      await AsyncStorage.removeItem('userType');
     }
   
     private logout() {
@@ -72,18 +91,18 @@ interface IStateNavigationMenu {
         this.props.navigation.navigate('AccountView');
     }
 
-    // private isAdministrator = (): boolean => {
-    //   AsyncStorage.getItem('userType')
-    //     .then((value) => {
-    //     const data = JSON.parse(value);
-    //     if (data.userType == UserType.MANAGER){
-    //       console.log("TAIP: ", data.userType);
-    //       return true;
-    //     }
-    //   });
-    //   console.log("TAIPRAU: ");
-    //   return false;
-    // }
+    private navigateToChangePasswordView(){
+        this.props.navigation.navigate('ChangePasswordView');
+    }
+
+    private async isAdministrator() {
+      if (await AsyncStorage.getItem('userType') != "ADMINISTRATOR"){
+        this.setState({
+          isAdmin: false,
+        })
+      }
+    }
+    
   
       render() {
         return (
@@ -92,7 +111,7 @@ interface IStateNavigationMenu {
               <View style={{alignItems: 'center'}}>
                 <View style={styles.headerNavMenu}>
                   <Text style={[styles.titleNavMenu, styles.textFormat]}>
-                    JOB
+                    DESKS AT JOB
                   </Text>
                 </View>
                 <Text style={[styles.textFormat]}>
@@ -107,14 +126,25 @@ interface IStateNavigationMenu {
                     style={styles.itemOpacity}
                     color={'white'}
                     size={22}
-                    //name={'plus-square'}
-                    //name={ this.isAdministrator() ? 'layers' : 'map' }
-                    name = {'layers'}
+                    name = {this.state.isAdmin ? 'layers' : 'map'}
                   />
                 <DrawerItem
-                  sectionItemText={'Main View'}
+                  sectionItemText={this.state.languageService.get('activities')}
                   iconName={'settings'}
                   onClick={()=>this.navigateToMainView()}
+                />
+                </View>
+                <View style
+                ={styles.navMenuButton}>
+                  <Feather
+                    style={styles.itemOpacity}
+                    color={'white'}
+                    size={22}
+                    name={'key'}
+                  />
+                <DrawerItem
+                  sectionItemText={this.state.languageService.get('chpass')}
+                  onClick={()=>this.navigateToChangePasswordView()}
                 />
                 </View>
                 <View style
@@ -126,7 +156,7 @@ interface IStateNavigationMenu {
                     name={'user'}
                   />
                 <DrawerItem
-                  sectionItemText={'My account'}
+                  sectionItemText={this.state.languageService.get('myAccount')}
                   onClick={()=>this.navigateToAccountView()}
                 />
                 </View>

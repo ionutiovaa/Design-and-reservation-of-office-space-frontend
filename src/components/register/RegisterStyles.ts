@@ -29,5 +29,10 @@ const styles = StyleSheet.create({
     paddingBottom: 15,
     paddingTop: 20,
   },
+  customHeader: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
 });
 export default styles;

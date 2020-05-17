@@ -79,8 +79,7 @@ export default class LoginView extends React.Component<any, IStateLogin> {
       isLoading: true,
     });
 
-    //console.log(username);
-    //console.log(password);
+    
     AuthenticateService.login({
       username,
       password,
@@ -88,6 +87,7 @@ export default class LoginView extends React.Component<any, IStateLogin> {
       .then(async (user: IUser) => {
         await AsyncStorage.setItem('logged_user', JSON.stringify(user));
         await AsyncStorage.setItem('token', user.token);
+        AuthenticateService.getUserType();
         this.setState({
           isLoading: false,
           password: '',
@@ -155,13 +155,13 @@ export default class LoginView extends React.Component<any, IStateLogin> {
               <ScTextInput
                 value={this.state.username}
                 placeHolder={this.state.languageService.get('usrname_email')}
-                //icon={'mail'}
+                icon={'person'}
                 onChangeText={this.onChangeUserName.bind(this)}
               />
               <ScTextInput
                 value={this.state.password}
                 placeHolder={this.state.languageService.get('password')}
-                //icon={'lock'}
+                icon={'lock'}
                 secureTextEntry={true}
                 onChangeText={this.onChangePassword.bind(this)}
               />

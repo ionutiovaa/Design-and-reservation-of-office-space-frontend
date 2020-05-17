@@ -7,6 +7,11 @@ import {config} from '../config/config';
 import { UserType } from '../data-models/UserType';
 
 export default class AuthenticateService {
+
+  constructor(){
+    var isAdmin;
+  }
+
     public static login = async (jwtRequest: IJwtRequest): Promise<IUser> => {
       console.log(jwtRequest);
       const result = await axios.post(
@@ -16,19 +21,24 @@ export default class AuthenticateService {
       return result.data;
     };
 
-    public static getUserType = async (): Promise<UserType> => {
+    public static getUserType = async (): Promise<boolean> => {
       const jsonUser = await AsyncStorage.getItem('logged_user');
       const user: IUser = JSON.parse(jsonUser) as IUser;
-      console.log("USERNAME: ", user.username);
+
       const result = await axios.get(
-        `${config.apiUrl}/users/getUserType?username=${user.username}`//, {
-        //   params: user.username
-        // }
+        `${config.apiUrl}/users/getUserType?username=${user.username}`
       );
-      console.log("TYPEEEE: ", result.data);
-      return result.data;
-      // console.log(result.data);
-      // return result.data;
+
+      AsyncStorage.setItem('userType', result.data);
+  
+      if (result.data == UserType.ANGAJAT){
+        return true;
+      }
+      else{
+        return false;
+      }
+
     }
   }
+
   

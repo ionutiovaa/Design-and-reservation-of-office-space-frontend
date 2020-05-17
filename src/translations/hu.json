@@ -22,6 +22,12 @@
     "Adminisztrátor": "ADMINISTRATOR",
     "later": "Adja hozzá később.",
     "username": "Felhasználónév",
+    "userType": "Attribútum",
+    "delete_account": "Fiók törlése",
+    "chpass": "Jelszó módosítása",
+    "myAccount": "Az én fiókom",
+    "activities": "Tevékenységek",
+    "deleted": "Felhasználó törölve.",
   
     "old_password": "Régi jelszó",
     "new_password": "Új jelszó",

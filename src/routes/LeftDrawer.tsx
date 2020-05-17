@@ -6,6 +6,7 @@ import AccountView from '../components/account/AccountView';
 import MainView from '../components/main-view/MainView';
 
 import NavigationMenu from '../components/navigation-menu/NavigationMenu';
+import ChangePassword from '../components/change-password/ChangePassword';
 
 const reactNavigation = require('react-navigation-drawer');
 const WIDTH = Dimensions.get('window').width;
@@ -14,7 +15,7 @@ const leftDrawer = reactNavigation.createDrawerNavigator(
     {
         MainView: {screen: MainView},
         AccountView: {screen: AccountView},
-
+        ChangePasswordView: {screen: ChangePassword}
     },
     {
         initialRouteName: 'MainView',

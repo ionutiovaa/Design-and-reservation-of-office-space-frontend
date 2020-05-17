@@ -22,6 +22,12 @@
     "Verwalter": "ADMINISTRATOR",
     "later": "Später hinzufügen.",
     "username": "Nutzername",
+    "userType": "Rolle",
+    "delete_account": "Konto löschen",
+    "chpass": "Passwort ändern",
+    "myAccount": "Mein Konto",
+    "activities": "Aktivitäten",
+    "deleted": "Benutzer gelöscht.",
   
     "old_password": "Altes Passwort",
     "new_password": "Neues Kennwort",

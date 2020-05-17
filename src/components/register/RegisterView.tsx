@@ -219,7 +219,7 @@ interface IScRegisterState {
           }
         }
         var type: string = UserType[typeFinal];
-        AsyncStorage.setItem('userType', type);
+        //AsyncStorage.setItem('userType', type);
 
         const user: IUser = {
           //username: this.state.email.split('@')[0],
