@@ -223,7 +223,7 @@ interface IStateChangePassword {
                     </View>
                     <ScButton
                       onClick={this.onChangePassowrd.bind(this)}
-                      text={this.state.languageService.get('register')}
+                      text={this.state.languageService.get('change_password_form')}
                     />
                   </View>
                 </Fragment>

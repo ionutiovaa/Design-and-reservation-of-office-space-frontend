@@ -4,15 +4,18 @@ import {Dimensions} from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import AccountView from '../components/account/AccountView';
 import MainView from '../components/main-view/MainView';
+import MapView from '../components/map-view/MapView';
 
 import NavigationMenu from '../components/navigation-menu/NavigationMenu';
 import ChangePassword from '../components/change-password/ChangePassword';
+//import MapView from 'react-native-maps';
 
 const reactNavigation = require('react-navigation-drawer');
 const WIDTH = Dimensions.get('window').width;
 const token = AsyncStorage.getItem('token');
 const leftDrawer = reactNavigation.createDrawerNavigator(
     {
+        MapView: {screen: MapView},
         MainView: {screen: MainView},
         AccountView: {screen: AccountView},
         ChangePasswordView: {screen: ChangePassword}
@@ -29,5 +32,4 @@ const leftDrawer = reactNavigation.createDrawerNavigator(
     },
 );
 
-//export default leftDrawer;
 export default leftDrawer;

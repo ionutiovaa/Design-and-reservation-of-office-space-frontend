@@ -5,6 +5,7 @@ import MainView from '../components/main-view/MainView';
 import RegisterView from '../components/register/RegisterView';
 import leftDrawer from './LeftDrawer';
 import AccountView from '../components/account/AccountView';
+import MapView from 'react-native-maps';
 
 const reactNavigation = require('react-navigation-stack');
 const MainNavigator = reactNavigation.createStackNavigator(
@@ -13,6 +14,7 @@ const MainNavigator = reactNavigation.createStackNavigator(
         Login: {screen: LoginView},
         //MainView: {screen: MainView},
         Register: {screen: RegisterView},
+        //MapView: {screen: MapView}
         //Account: {screen: AccountView},
     },
     {

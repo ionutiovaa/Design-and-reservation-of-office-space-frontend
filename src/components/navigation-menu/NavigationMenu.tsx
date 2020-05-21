@@ -95,6 +95,10 @@ interface IStateNavigationMenu {
         this.props.navigation.navigate('ChangePasswordView');
     }
 
+    private navigateToMapView(){
+      this.props.navigation.navigate('MapView');
+  }
+
     private async isAdministrator() {
       if (await AsyncStorage.getItem('userType') != "ADMINISTRATOR"){
         this.setState({
@@ -121,6 +125,19 @@ interface IStateNavigationMenu {
               <View style={[styles.lineStyle, styles.itemOpacity]} />
               <Content style={{marginTop: 12}}>
                 <List>
+                <View style
+                ={styles.navMenuButton}>
+                  <Feather
+                    style={styles.itemOpacity}
+                    color={'white'}
+                    size={22}
+                    name={'key'}
+                  />
+                <DrawerItem
+                  sectionItemText={'Mapa'}
+                  onClick={()=>this.navigateToMapView()}
+                />
+                </View>
                 <View style={styles.navMenuButton}>
                 <Feather
                     style={styles.itemOpacity}

@@ -94,6 +94,7 @@ export default class LoginView extends React.Component<any, IStateLogin> {
           username: '',
         });
         this.props.navigation.navigate('MainView');
+        //this.props.navigation.navigate('MapView');
       })
       .catch(async () => {
         this.showSnackBarMessage(this.state.languageService.get('wrong_login'));
