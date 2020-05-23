@@ -8,6 +8,7 @@ import MapView from '../components/map-view/MapView';
 
 import NavigationMenu from '../components/navigation-menu/NavigationMenu';
 import ChangePassword from '../components/change-password/ChangePassword';
+import BookView from '../components/book-view/BookView';
 //import MapView from 'react-native-maps';
 
 const reactNavigation = require('react-navigation-drawer');
@@ -18,7 +19,8 @@ const leftDrawer = reactNavigation.createDrawerNavigator(
         MapView: {screen: MapView},
         MainView: {screen: MainView},
         AccountView: {screen: AccountView},
-        ChangePasswordView: {screen: ChangePassword}
+        ChangePasswordView: {screen: ChangePassword},
+        BookView: {screen: BookView}
     },
     {
         initialRouteName: 'MainView',

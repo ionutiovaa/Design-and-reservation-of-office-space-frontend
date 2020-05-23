@@ -125,16 +125,15 @@ interface IStateNavigationMenu {
               <View style={[styles.lineStyle, styles.itemOpacity]} />
               <Content style={{marginTop: 12}}>
                 <List>
-                <View style
-                ={styles.navMenuButton}>
+                <View style={styles.navMenuButton}>
                   <Feather
                     style={styles.itemOpacity}
                     color={'white'}
                     size={22}
-                    name={'key'}
+                    name = {this.state.isAdmin ? 'layers' : 'map'}
                   />
                 <DrawerItem
-                  sectionItemText={'Mapa'}
+                  sectionItemText={this.state.languageService.get('activities')}
                   onClick={()=>this.navigateToMapView()}
                 />
                 </View>
@@ -143,16 +142,15 @@ interface IStateNavigationMenu {
                     style={styles.itemOpacity}
                     color={'white'}
                     size={22}
-                    name = {this.state.isAdmin ? 'layers' : 'map'}
+                    name = {'camera'}
                   />
                 <DrawerItem
-                  sectionItemText={this.state.languageService.get('activities')}
+                  sectionItemText={this.state.languageService.get('scan')}
                   iconName={'settings'}
                   onClick={()=>this.navigateToMainView()}
                 />
                 </View>
-                <View style
-                ={styles.navMenuButton}>
+                <View style={styles.navMenuButton}>
                   <Feather
                     style={styles.itemOpacity}
                     color={'white'}
@@ -164,8 +162,7 @@ interface IStateNavigationMenu {
                   onClick={()=>this.navigateToChangePasswordView()}
                 />
                 </View>
-                <View style
-                ={styles.navMenuButton}>
+                <View style={styles.navMenuButton}>
                   <Feather
                     style={styles.itemOpacity}
                     color={'white'}

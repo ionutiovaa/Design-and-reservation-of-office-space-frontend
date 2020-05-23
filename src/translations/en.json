@@ -28,6 +28,11 @@
     "myAccount": "My account",
     "activities": "Activities",
     "deleted": "User deleted.",
+    "plan": "Company map",
+    "yes": "Yes",
+    "no": "No",
+    "sureReserve": "Do you want to book this office?",
+    "scan": "Scan desk",
   
     "old_password": "Old password",
     "new_password": "New password",

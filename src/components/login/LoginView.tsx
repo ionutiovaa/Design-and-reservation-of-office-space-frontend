@@ -64,7 +64,7 @@ export default class LoginView extends React.Component<any, IStateLogin> {
 
     tokenDate.getTime() < dateNow.getTime()
       ? this.clearStoredData()
-      : this.props.navigation.navigate('MainView');
+      : this.props.navigation.navigate('MapView');
   }
 
   private onPressLoginButton() {
@@ -93,7 +93,7 @@ export default class LoginView extends React.Component<any, IStateLogin> {
           password: '',
           username: '',
         });
-        this.props.navigation.navigate('MainView');
+        this.props.navigation.navigate('MapView');
         //this.props.navigation.navigate('MapView');
       })
       .catch(async () => {

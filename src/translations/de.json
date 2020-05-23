@@ -28,6 +28,11 @@
     "myAccount": "Mein Konto",
     "activities": "Aktivitäten",
     "deleted": "Benutzer gelöscht.",
+    "plan": "Firmenkarte",
+    "yes": "Ja",
+    "no": "Nein",
+    "sureReserve": "Möchten Sie dieses Büro buchen?",
+    "scan": "Scannen Sie einen Schreibtisch",
   
     "old_password": "Altes Passwort",
     "new_password": "Neues Kennwort",

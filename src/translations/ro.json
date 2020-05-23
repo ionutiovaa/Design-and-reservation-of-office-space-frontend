@@ -28,6 +28,11 @@
     "myAccount": "Contul meu",
     "activities": "Activități",
     "deleted": "Utilizator șters.",
+    "plan": "Harta companiei",
+    "yes": "Da",
+    "no": "Nu",
+    "sureReserve": "Doriți să rezervați acest birou?",
+    "scan": "Scanați un birou",
   
     "old_password": "Parola veche",
     "new_password": "Parola noua",

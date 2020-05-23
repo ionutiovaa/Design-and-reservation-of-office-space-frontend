@@ -28,6 +28,11 @@
     "myAccount": "Az én fiókom",
     "activities": "Tevékenységek",
     "deleted": "Felhasználó törölve.",
+    "plan": "Vállalati térkép",
+    "yes": "Igen",
+    "no": "Nem",
+    "sureReserve": "Szeretné lefoglalni ezt az irodát?",
+    "scan": "Olvassa be az íróasztalot",
   
     "old_password": "Régi jelszó",
     "new_password": "Új jelszó",
