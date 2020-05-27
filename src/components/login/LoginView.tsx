@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import {View, Text, Dimensions, StyleSheet, Button} from 'react-native';
+import React, { useState, useEffect, Fragment, Component } from 'react';
+import { View, Text, Dimensions, StyleSheet, Button } from 'react-native';
 import TextField from '@material-ui/core/TextField';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -14,8 +14,8 @@ import ScTextInput from '../sc-text-input/ScTextInput';
 import ScButton from '../sc-button/ScButton';
 import ScPicker from '../sc-picker/ScPicker';
 import LanguageService from '../../services/LanguageService';
-import {Language} from '../../data-models/Language';
-import {IUser} from '../../data-models/User';
+import { Language } from '../../data-models/Language';
+import { IUser } from '../../data-models/User';
 import AuthenticateService from '../../services/AuthenticateService';
 import { UserType } from '../../data-models/UserType';
 
@@ -52,19 +52,29 @@ export default class LoginView extends React.Component<any, IStateLogin> {
   }
 
   private async checkLogin() {
-    const token = (await AsyncStorage.getItem('token')) || null;
-    if (!token) return;
+    // AsyncStorage.getAllKeys((err, keys) => {
+    //   AsyncStorage.multiGet(keys, (error, stores) => {
+    //     stores.map((result, i, store) => {
+    //       console.log({ [store[i][0]]: store[i][1] });
+    //       return true;
+    //     });
+    //   });
+    // });
+    try {
+      const token = (await AsyncStorage.getItem('token')) || null;
+      if (!token) return;
+      const decodedToken: Payload = JSON.parse(
+        JSON.stringify(jwt.decodeToken(token).payload),
+      );
 
-    const decodedToken: Payload = JSON.parse(
-      JSON.stringify(jwt.decodeToken(token).payload),
-    );
-    const dateNow = new Date();
-    const tokenDate = new Date(0);
-    tokenDate.setUTCSeconds(decodedToken.exp);
-
-    tokenDate.getTime() < dateNow.getTime()
-      ? this.clearStoredData()
-      : this.props.navigation.navigate('MapView');
+      const dateNow = new Date();
+      const tokenDate = new Date(0);
+      tokenDate.setUTCSeconds(decodedToken.exp);
+      tokenDate.getTime() < dateNow.getTime()
+        ? this.clearStoredData()
+        : this.props.navigation.navigate('MapView');
+    }
+    catch (err) { console.log("err:" + err) }
   }
 
   private onPressLoginButton() {
@@ -79,7 +89,7 @@ export default class LoginView extends React.Component<any, IStateLogin> {
       isLoading: true,
     });
 
-    
+
     AuthenticateService.login({
       username,
       password,
@@ -144,42 +154,42 @@ export default class LoginView extends React.Component<any, IStateLogin> {
   render() {
     return (
       <Fragment>
-      <View style={styles.formView}>
-        <View>
-        <ScPicker
+        <View style={styles.formView}>
+          <View>
+            <ScPicker
               selectedValue={this.state.currentLanguage}
               onChangeValue={(itemValue: Language) =>
                 this.onChangeLanguage(itemValue)
               }
               pickerItems={Object.keys(Language)}
             />
-              <ScTextInput
-                value={this.state.username}
-                placeHolder={this.state.languageService.get('usrname_email')}
-                icon={'person'}
-                onChangeText={this.onChangeUserName.bind(this)}
-              />
-              <ScTextInput
-                value={this.state.password}
-                placeHolder={this.state.languageService.get('password')}
-                icon={'lock'}
-                secureTextEntry={true}
-                onChangeText={this.onChangePassword.bind(this)}
-              />
-            </View>
+            <ScTextInput
+              value={this.state.username}
+              placeHolder={this.state.languageService.get('usrname_email')}
+              icon={'person'}
+              onChangeText={this.onChangeUserName.bind(this)}
+            />
+            <ScTextInput
+              value={this.state.password}
+              placeHolder={this.state.languageService.get('password')}
+              icon={'lock'}
+              secureTextEntry={true}
+              onChangeText={this.onChangePassword.bind(this)}
+            />
+          </View>
         </View>
         <View style={styles.textInput}>
-              <ScButton
-                text={this.state.languageService.get('login')}
-                onClick={this.onPressLoginButton.bind(this)}
-              />
-              <Text
-                style={styles.textStyle}
-                onPress={this.switchToRegister.bind(this)}>
-                {this.state.languageService.get('create_accont')}
-              </Text>
-            </View>
-            </Fragment>
+          <ScButton
+            text={this.state.languageService.get('login')}
+            onClick={this.onPressLoginButton.bind(this)}
+          />
+          <Text
+            style={styles.textStyle}
+            onPress={this.switchToRegister.bind(this)}>
+            {this.state.languageService.get('create_accont')}
+          </Text>
+        </View>
+      </Fragment>
     )
   }
 }
