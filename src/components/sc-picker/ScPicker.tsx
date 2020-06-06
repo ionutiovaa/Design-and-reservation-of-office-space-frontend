@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Picker} from 'react-native';
+import { StyleSheet, Picker } from 'react-native';
 
 interface IScPickerProps {
   selectedValue?: string;
@@ -25,7 +25,7 @@ export default class ScPicker extends React.Component<IScPickerProps, any> {
       scPicker: {
         flexDirection: 'row',
         paddingLeft: 100,
-        color: this.props.colorText ? this.props.colorText : '#5f6769',
+        color: this.props.colorText ? this.props.colorText : '#3f4194',
       },
     });
     return (

@@ -1,7 +1,7 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  navDrawBg: {backgroundColor: '#719192'},
+  navDrawBg: { backgroundColor: '#3f4194' },
   headerNavMenu: {
     flexDirection: 'row',
     margin: 10,

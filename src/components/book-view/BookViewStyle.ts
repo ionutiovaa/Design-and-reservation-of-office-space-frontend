@@ -10,45 +10,95 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height,
     position: 'absolute',
   },
+  yesButton: {
+    width: 70,
+    marginLeft: 60,
+    marginTop: 40,
+  },
+  noButton: {
+    width: 70,
+    marginLeft: 60,
+    marginTop: 40
+  },
   title: {
     textAlign: 'center',
-    //fontWeight: 'bold',
     fontSize: 19,
     marginTop: 35,
-    color: '#719192',
+    color: '#3f4194',
     fontWeight: '100',
-    //marginBottom: 1,
   },
   bottom: {
     flex: 1,
+    marginTop: 10,
     justifyContent: 'flex-end',
-    marginBottom: 40,
     alignItems: 'center',
   },
-  container: {
-
-    alignItems: "center",
+  textNothing: {
     alignSelf: 'center',
-    marginLeft: 46,
-    //backgroundColor: "black",
-    //paddingTop: 100,
-
+    textAlign: 'center',
+    paddingTop: 14,
+    color: '#3f4194'
+  },
+  buttonPress: {
+    borderColor: 'red',
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  qrbottoms: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: -20,
+  },
+  container: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    flex: 1
+  },
+  textChoose: {
+    fontSize: 30,
+  },
+  sgTitleText: {
+    marginTop: 5,
+    color: '#3f4194',
+    fontSize: 23,
+    textAlign: 'center',
+    fontWeight: '100',
+    marginBottom: 20,
   },
   text: {
     fontSize: 20,
     marginTop: 10
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: '#000066',
+  },
+  welcomePress: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    color: '#ffffff',
+  },
+  buttonDisabled: {
+    borderColor: '#000066',
+    borderWidth: 1,
+    borderRadius: 10,
   },
   button: {
     backgroundColor: "#4EB151",
     paddingVertical: 11,
     paddingHorizontal: 17,
     borderRadius: 3,
-    // marginVertical: 50
   },
   buttonText: {
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "600"
+  },
+  dateView: {
+    marginTop: 10,
   }
 
 });

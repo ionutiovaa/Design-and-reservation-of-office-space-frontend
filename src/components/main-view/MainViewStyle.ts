@@ -1,12 +1,8 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
-    containerStyle: {
-		//flex:1,
-		//margintop:180,
-		//alignItems: 'center',
+  containerStyle: {
     backgroundColor: 'lightblue',
-    
   },
   customHeader: {
     flex: 1,
@@ -16,33 +12,38 @@ const styles = StyleSheet.create({
     height: Dimensions.get('screen').height,
     position: 'absolute',
   },
-
-	mapStyle: {
-        
-		left: 0,
-		right: 0,
-		top: 0,
-		bottom: 0,
-    position: 'absolute',
-    
-    },
-    centerText: {
-        flex: 1,
-        fontSize: 18,
-        padding: 32,
-        color: '#777'
-      },
-      textBold: {
-        fontWeight: '500',
-        color: '#000'
-      },
-      buttonText: {
-        fontSize: 21,
-        color: 'rgb(0,122,255)'
-      },
-      buttonTouchable: {
-        padding: 16
-      }
+  mapStyle: {
+    ...StyleSheet.absoluteFillObject,
+    left: 10,
+    right: 10,
+    top: 80,
+    bottom: 50,
+  },
+  textInputStyle: {
+    width: '100%',
+    height: 40,
+    marginTop: 20,
+    borderWidth: 1,
+    textAlign: 'center',
+  },
+  centerText: {
+    flex: 1,
+    fontSize: 18,
+    padding: 32,
+    color: '#777'
+  },
+  textBold: {
+    fontWeight: '500',
+    color: '#000'
+  },
+  buttonText: {
+    textAlign: 'center',
+    fontSize: 21,
+    color: '#9395db'
+  },
+  buttonTouchable: {
+    padding: 16
+  }
 });
 
 export default styles;

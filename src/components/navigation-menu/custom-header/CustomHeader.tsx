@@ -1,5 +1,5 @@
 import React from 'react';
-import {Header, Button, Left, Body, Icon, Right} from 'native-base';
+import { Header, Button, Left, Body, Icon } from 'native-base';
 
 interface IPropsCustomHeader {
   titleText: string;
@@ -10,16 +10,14 @@ interface IPropsCustomHeader {
 export default class CustomHeader extends React.Component<
   IPropsCustomHeader,
   any
-> {
+  > {
   constructor(props: IPropsCustomHeader) {
     super(props);
   }
 
-  
-
   render() {
     return (
-      <Header style={{backgroundColor: '#719192'}}>
+      <Header style={{ backgroundColor: '#3f4194' }}>
         {!this.props.isDisabledDrawer && (
           <Left>
             <Button

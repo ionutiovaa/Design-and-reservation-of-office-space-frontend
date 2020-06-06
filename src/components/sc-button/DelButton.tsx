@@ -1,11 +1,11 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableHighlight, View} from 'react-native';
+import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 
 interface IScButtonProps {
   onClick(): void;
   text: string;
   color?: string;
-  width?:number;
+  width?: number;
 }
 
 export default class DelButton extends React.Component<IScButtonProps, any> {
@@ -15,11 +15,11 @@ export default class DelButton extends React.Component<IScButtonProps, any> {
 
   render() {
     return (
-      <View style={{padding: 5}}>
+      <View style={{ padding: 5 }}>
         <TouchableHighlight
           style={[
             styles.sgButton,
-            {backgroundColor: this.props.color || '#d4cfd1', width: this.props.width || 160},
+            { backgroundColor: this.props.color || '#bdbae3', width: this.props.width || 160 },
           ]}
           onPress={() => this.props.onClick()}>
           <Text style={styles.sgButtonText}>{this.props.text}</Text>
@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 10,
     alignItems: 'center',
-    
   },
   sgButtonText: {
     color: 'red',

@@ -1,26 +1,28 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
   sgFormView: {
-    marginTop: 5,
+    marginTop: 0,
     marginLeft: 30,
     marginRight: 30,
     width: Dimensions.get('screen').width - 60,
   },
   sgRegisterView: {
     alignItems: 'center',
+    position: 'absolute',
   },
   sgTitleText: {
-    marginTop: 35,
-    color: '#719192',
-    fontSize: 40,
+    marginTop: 5,
+    color: '#3f4194',
+    fontSize: 23,
     textAlign: 'center',
     fontWeight: '100',
-    marginBottom: 24,
+    marginBottom: 20,
   },
   sgText: {
-    color: '#719192',
-    fontSize: 15,
+    marginLeft: 20,
+    color: '#3f4194',
+    fontSize: 17,
     textAlign: 'left',
   },
   sgPicker: {
@@ -33,6 +35,23 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
+  },
+  title: {
+    textAlign: 'center',
+    fontSize: 19,
+    marginTop: 35,
+    color: '#3f4194',
+    fontWeight: '100',
+  },
+  yesButton: {
+    width: 70,
+    marginLeft: 60,
+    marginTop: 40,
+  },
+  noButton: {
+    width: 70,
+    marginLeft: 60,
+    marginTop: 40
   },
 });
 export default styles;

@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, View, TextInput, KeyboardTypeOptions} from 'react-native';
-import {Icon} from 'react-native-elements';
+import { StyleSheet, View, TextInput, KeyboardTypeOptions } from 'react-native';
+import { Icon } from 'react-native-elements';
 
 interface IScTextInputProps {
   placeHolder?: string;
@@ -17,14 +17,14 @@ interface IScTextInputProps {
 export default class ScTextInput extends React.Component<
   IScTextInputProps,
   any
-> {
+  > {
   constructor(props: IScTextInputProps) {
     super(props);
   }
 
   render() {
     return (
-      <View style={{padding: 5}}>
+      <View style={{ padding: 5 }}>
         <View
           style={[
             styles.scInputTextView,
@@ -60,11 +60,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 12,
     borderWidth: 2,
+    borderColor: '#3f4194',
   },
   scInputText: {
     flex: 1,
     color: '#424242',
     padding: 10,
     borderRadius: 12,
+
   },
 });

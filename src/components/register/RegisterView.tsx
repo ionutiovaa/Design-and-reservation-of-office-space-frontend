@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Text, View, KeyboardAvoidingView } from 'react-native';
+import { Text, View, KeyboardAvoidingView, Image, Dimensions } from 'react-native';
 import { AxiosError } from 'axios';
 import Snackbar from 'react-native-snackbar';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -7,17 +7,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 import ScButton from '../sc-button/ScButton';
 import ScTextInput from '../sc-text-input/ScTextInput';
 import ScPicker from '../sc-picker/ScPicker';
-import ServEchipe from '../../services/RegisterService';
 import { CheckBox } from 'react-native-elements';
 import { IUser } from '../../data-models/User';
 import UserService from '../../services/UserService';
 import LanguageService from '../../services/LanguageService';
 import { UserType } from '../../data-models/UserType';
 import { ScrollView } from 'react-native-gesture-handler';
-import UserToEchipa from '../../data-models/UserToEchipa';
 import styles from './RegisterStyles';
-import IRole from '../../data-models/Role';
-import AuthenticateService from '../../services/AuthenticateService';
+import FloorService from '../../services/FloorService';
 
 interface IScRegisterState {
   firstname: string;
@@ -29,7 +26,6 @@ interface IScRegisterState {
   mobileNumber: string;
   isLoading: boolean;
   userType: UserType;
-  //echipa: string;
   checked: boolean;
   isValidLastName: boolean;
   isValidFirstName: boolean;
@@ -40,7 +36,6 @@ interface IScRegisterState {
   isValidRole: boolean;
   isValidUsername: boolean;
   languageService: LanguageService;
-  //echipe: UserToEchipa[];
   roles: string[];
 }
 
@@ -55,9 +50,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
       username: '',
       secondPassword: '',
       mobileNumber: '',
-      //role: this.state.languageService.get('role'),
-      userType: null,
-      //echipa: '',
+      userType: UserType.ADMINISTRATOR,
       checked: false,
       isLoading: false,
       isValidLastName: true,
@@ -68,7 +61,6 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
       isValidMobileNumber: true,
       isValidRole: true,
       isValidUsername: true,
-      //echipe: [],
       roles: [],
       languageService: new LanguageService(),
     };
@@ -160,18 +152,6 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
   }
 
   componentDidMount() {
-    // ServEchipe.getEchipe().then((items: UserToEchipa[]) => {
-    //   //items.unshift(this.state.languageService.get('later'));
-    //   const later: UserToEchipa = {
-    //     username: "",
-    //     numeEchipe: this.state.languageService.get('later'),
-    //   }
-    //   items.unshift(later);
-    //   console.log(items);
-    //   this.setState({
-    //     echipe: items,
-    //   });
-    // });
     let rolesItems = [];
     for (let type in UserType) {
       rolesItems.push(this.state.languageService.get(type));
@@ -182,71 +162,47 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
   }
 
   private onRegister() {
-    //if (!this.checkInputData()) return;
-
     this.setState({
       isLoading: true,
     });
 
-    // let userRole: UserType = null;
-    // console.log(this.state.userType);
-    // console.log(this.state.languageService.get('employee'));
-    // if (this.state.userType == this.state.languageService.get('employee')){
-    //   this.setState({userType: UserType.ANGAJAT});
-    // }
-    // else if (this.state.userType == this.state.languageService.get('manager')){
-    //   this.setState({userType: UserType.MANAGER});
-    // }
-    // else if (this.state.userType == this.state.languageService.get('administrator')){
-    //   this.setState({userType: UserType.ADMINISTRATOR});
-    // }
-    //this.setState({userType: userRole});
     let typeFinal: UserType = null;
     if (this.state.userType === null) {
-      // this.setState({
-      //   userType: UserType.ANGAJAT,
-      // })
       typeFinal = UserType.ANGAJAT;
     }
     else {
       for (let type in UserType) {
         if (this.state.userType == this.state.languageService.get(type)) {
           typeFinal = UserType[type];
-          // this.setState({
-          //   userType: UserType[type]
-          // })
         }
       }
     }
     var type: string = UserType[typeFinal];
-    //AsyncStorage.setItem('userType', type);
 
     const user: IUser = {
-      //username: this.state.email.split('@')[0],
       firstName: this.state.firstname,
       lastName: this.state.lastname,
       email: this.state.email,
       username: this.state.username,
       password: '',
       mobileNumber: this.state.mobileNumber,
-      //userType: this.state.userType,
       userType: typeFinal,
-      //echipe: this.state.echipe,
       token: '',
     };
-    console.log(this.state.userType);
-    // sha256(this.state.password).then((hash: string) => {
     user.password = this.state.password;
-    // user.password = hash;
-    // });
     UserService.insert(user)
-      .then((newUser: IUser) => {
+      .then(async (newUser: IUser) => {
+        await AsyncStorage.setItem('logged_user', JSON.stringify(user));
+        await AsyncStorage.setItem('token', user.token);
+        FloorService.addFloor();
+        await AsyncStorage.setItem('logged_user', JSON.stringify(user));
         this.showSnackBarMessage(
           this.state.languageService.get('succes_create_account'),
         );
         this.setState({
           isLoading: false,
         });
+
         this.props.navigation.navigate('MapView', {
           goToLogin: true,
           userId: newUser.id,
@@ -266,6 +222,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
         <KeyboardAvoidingView>
           <Fragment>
             {this.state.isLoading === true}
+            <Image style={{ marginTop: -80, resizeMode: 'cover', width: Dimensions.get('screen').width, height: Dimensions.get('screen').height }} source={require('../../assets/background.jpeg')}></Image>
             <View style={styles.sgRegisterView}>
               <Text style={styles.sgTitleText}>
                 {this.state.languageService.get('register_form')}
@@ -274,7 +231,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                 <ScTextInput
                   value={this.state.lastname}
                   placeHolder={this.state.languageService.get('l_name')}
-                  //icon={'person'}
+                  icon={'person'}
                   bgColor={!this.state.isValidLastName ? '#FAAABA' : ''}
                   onChangeText={newLastName =>
                     this.setState({
@@ -286,7 +243,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                 <ScTextInput
                   value={this.state.firstname}
                   placeHolder={this.state.languageService.get('f_name')}
-                  //icon={'person'}
+                  icon={'person'}
                   bgColor={!this.state.isValidFirstName ? '#FAAABA' : ''}
                   onChangeText={newFirstName =>
                     this.setState({
@@ -298,7 +255,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                 <ScTextInput
                   value={this.state.mobileNumber}
                   placeHolder={this.state.languageService.get('phone')}
-                  //icon={'phone'}
+                  icon={'phone'}
                   keyboardType={'phone-pad'}
                   bgColor={!this.state.isValidMobileNumber ? '#FAAABA' : ''}
                   onChangeText={newMobileNumber =>
@@ -311,7 +268,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                 <ScTextInput
                   value={this.state.email}
                   placeHolder={this.state.languageService.get('email')}
-                  //icon={'mail'}
+                  icon={'mail'}
                   keyboardType={'email-address'}
                   bgColor={!this.state.isValidEmail ? '#FAAABA' : ''}
                   onChangeText={newEmail =>
@@ -321,7 +278,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                 <ScTextInput
                   value={this.state.username}
                   placeHolder={this.state.languageService.get('username')}
-                  //icon={'mail'}
+                  icon={'person'}
                   keyboardType={'email-address'}
                   bgColor={!this.state.isValidUsername ? '#FAAABA' : ''}
                   onChangeText={newUsername =>
@@ -331,7 +288,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                 <ScTextInput
                   value={this.state.password}
                   placeHolder={this.state.languageService.get('password')}
-                  //icon={'lock'}
+                  icon={'lock'}
                   secureTextEntry={true}
                   bgColor={!this.state.isValidPassword ? '#FAAABA' : ''}
                   onChangeText={newPassword =>
@@ -344,7 +301,7 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                 <ScTextInput
                   value={this.state.secondPassword}
                   placeHolder={this.state.languageService.get('conf_pass')}
-                  //icon={'lock'}
+                  icon={'lock'}
                   secureTextEntry={true}
                   bgColor={!this.state.isValidPassword ? '#FAAABA' : ''}
                   onChangeText={newSecondPassowrd =>
@@ -355,26 +312,14 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                   }
                 />
                 <View style={styles.sgPicker}>
-                  {/* <View>
-                        <Text style={styles.sgText}>
-                          {this.state.languageService.get('team')}
-                        </Text>
-                        <ScPicker
-                          selectedValue={this.state.echipa}
-                          pickerItems={this.state.echipe.map(item =>
-                            item.toString(),
-                          )}
-                          onChangeValue={newEchipa =>
-                            this.setState({echipa: newEchipa})
-                          }
-                        />
-                      </View> */}
-                  <View>
-                    <Text style={styles.sgText}>
-                      {this.state.languageService.get('role')}
-                    </Text>
+                  <View style={{ width: 300, backgroundColor: '#bdbae3', marginTop: -15, borderRadius: 12 }}>
+                    <View style={{ alignItems: 'center', marginLeft: -30 }}>
+                      <Text style={styles.sgText}>
+                        {this.state.languageService.get('role')}
+                      </Text>
+                    </View>
                     <ScPicker
-                      selectedValue={this.state.userType}
+                      selectedValue={this.state.userType.toString()}
                       pickerItems={this.state.roles}
                       onChangeValue={newRole =>
                         this.setState({ userType: newRole })
@@ -382,22 +327,24 @@ export default class RegisterView extends React.Component<any, IScRegisterState>
                     />
                   </View>
                 </View>
-                <CheckBox
-                  containerStyle={{
-                    backgroundColor: !this.state.isValidAgreeTerm
-                      ? '#FAAABA'
-                      : 'white',
-                  }}
-                  title={this.state.languageService.get('agree_terms')}
-                  checked={this.state.checked}
-                  onPress={() =>
-                    this.setState({
-                      checked: !this.state.checked,
-                      isValidAgreeTerm: true,
-                    })
-                  }
-                  checkedColor={'#3c4245'}
-                />
+                <View style={{ marginTop: -9 }}>
+                  <CheckBox
+                    containerStyle={{
+                      backgroundColor: !this.state.isValidAgreeTerm
+                        ? '#FAAABA'
+                        : 'white',
+                    }}
+                    title={this.state.languageService.get('agree_terms')}
+                    checked={this.state.checked}
+                    onPress={() =>
+                      this.setState({
+                        checked: !this.state.checked,
+                        isValidAgreeTerm: true,
+                      })
+                    }
+                    checkedColor={'#3f4194'}
+                  />
+                </View>
               </View>
               <ScButton
                 onClick={this.onRegister.bind(this)}

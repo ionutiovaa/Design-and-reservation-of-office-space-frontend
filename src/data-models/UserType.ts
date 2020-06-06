@@ -1,5 +1,5 @@
 export enum UserType {
     ADMINISTRATOR = 'ADMINISTRATOR',
-    MANAGER = 'MANAGER',
+    //MANAGER = 'MANAGER',
     ANGAJAT = 'ANGAJAT',
 }

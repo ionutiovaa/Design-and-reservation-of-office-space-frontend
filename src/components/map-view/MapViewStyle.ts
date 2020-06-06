@@ -12,16 +12,20 @@ const styles = StyleSheet.create({
   },
   cellStyle: {
     flex: 1,
-    backgroundColor: 'red',
     borderStyle: 'solid',
     borderColor: 'black',
     borderWidth: 1.0,
+  },
+  mapStyle: {
+    flexDirection: 'row',
+    flex: 1,
+    maxHeight: 310,
+    marginLeft: 25
   },
   yesButton: {
     width: 70,
     marginLeft: 60,
     marginTop: 40,
-
   },
   noButton: {
     width: 70,
@@ -53,12 +57,14 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: 'center',
-    //fontWeight: 'bold',
     fontSize: 19,
     marginTop: 35,
-    color: '#719192',
+    color: '#3f4194',
     fontWeight: '100',
-    //marginBottom: 1,
+  },
+  imageStyle: {
+    height: 70,
+    width: 70,
   }
 
 });

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'native-base';
-import {TouchableNativeFeedback, View} from 'react-native';
+import { TouchableNativeFeedback, View } from 'react-native';
 
 import styles from './styles/NavMenuStyle';
 
@@ -12,17 +12,13 @@ interface IPropsNavMenuItem {
 }
 
 export default class DrawerItem extends React.Component<any, IPropsNavMenuItem> {
-    constructor(props: IPropsNavMenuItem){
+    constructor(props: IPropsNavMenuItem) {
         super(props);
     }
 
-    render(){
-        const iconSize: number = 18;
-        const iconColor: string = 'white';
-        return(
-            
+    render() {
+        return (
             <View>
-                
                 <TouchableNativeFeedback
                     onPress={() => this.props.onClick()}
                     background={TouchableNativeFeedback.SelectableBackground()}>

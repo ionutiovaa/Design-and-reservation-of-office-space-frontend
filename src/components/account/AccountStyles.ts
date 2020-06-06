@@ -1,4 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 const styles = StyleSheet.create({
     formView: {
@@ -6,36 +6,48 @@ const styles = StyleSheet.create({
         width: Dimensions.get('screen').width - 60,
     },
     acMainText: {
-        color: '#719192',
+        color: '#3f4194',
         fontSize: 16,
         textAlign: 'left',
         marginTop: 15,
     },
     acFormView: {
-        //flex: 1,
-        //alignItems: 'center',
-        marginTop: 10,
+        position: 'absolute',
+        marginTop: 15,
         marginLeft: 30,
         marginRight: 30,
         width: Dimensions.get('screen').width - 60,
-        //flex: 1,
-        //backgroundColor: 'red',
-        
     },
     customHeader: {
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
-      },
+    },
+    title: {
+        textAlign: 'center',
+        fontSize: 19,
+        marginTop: 35,
+        color: '#3f4194',
+        fontWeight: '100',
+    },
+    yesButton: {
+        width: 70,
+        marginLeft: 60,
+        marginTop: 40,
+    },
+    noButton: {
+        width: 70,
+        marginLeft: 60,
+        marginTop: 40
+    },
     bottom: {
-        flex: 1,
         justifyContent: 'flex-end',
-        marginBottom: 40,
+        marginBottom: 50,
         alignItems: 'center',
     },
     button: {
         position: 'absolute',
-        bottom:0
+        bottom: 0
     },
     textStyle: {
         textAlign: 'center',
@@ -46,7 +58,7 @@ const styles = StyleSheet.create({
         color: 'red',
         textDecorationLine: 'underline',
         position: 'absolute',
-        bottom:0,
+        bottom: 0,
     },
     backdropStyle: {
         position: 'absolute',

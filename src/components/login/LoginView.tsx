@@ -1,14 +1,9 @@
-import React, { useState, useEffect, Fragment, Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, Button } from 'react-native';
-import TextField from '@material-ui/core/TextField';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
+import React, { Fragment } from 'react';
+import { View, Text, Dimensions, Image } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import CardHeader from '@material-ui/core/CardHeader';
 import Snackbar from 'react-native-snackbar';
-import * as jwt from 'jsontokens';
+import styles from '../login/LoginViewStyle';
+
 
 import ScTextInput from '../sc-text-input/ScTextInput';
 import ScButton from '../sc-button/ScButton';
@@ -17,7 +12,6 @@ import LanguageService from '../../services/LanguageService';
 import { Language } from '../../data-models/Language';
 import { IUser } from '../../data-models/User';
 import AuthenticateService from '../../services/AuthenticateService';
-import { UserType } from '../../data-models/UserType';
 
 interface IStateLogin {
   username: string;
@@ -25,12 +19,6 @@ interface IStateLogin {
   isLoading: boolean;
   languageService: LanguageService;
   currentLanguage: Language;
-}
-
-interface Payload {
-  sub: string;
-  exp: number;
-  iat: number;
 }
 
 export default class LoginView extends React.Component<any, IStateLogin> {
@@ -52,21 +40,11 @@ export default class LoginView extends React.Component<any, IStateLogin> {
   }
 
   private async checkLogin() {
-    // AsyncStorage.getAllKeys((err, keys) => {
-    //   AsyncStorage.multiGet(keys, (error, stores) => {
-    //     stores.map((result, i, store) => {
-    //       console.log({ [store[i][0]]: store[i][1] });
-    //       return true;
-    //     });
-    //   });
-    // });
     try {
       const token = (await AsyncStorage.getItem('token')) || null;
       if (!token) return;
-      const decodedToken: Payload = JSON.parse(
-        JSON.stringify(jwt.decodeToken(token).payload),
-      );
-
+      var jwtDecode = require('jwt-decode');
+      var decodedToken = jwtDecode(token);
       const dateNow = new Date();
       const tokenDate = new Date(0);
       tokenDate.setUTCSeconds(decodedToken.exp);
@@ -78,10 +56,7 @@ export default class LoginView extends React.Component<any, IStateLogin> {
   }
 
   private onPressLoginButton() {
-    //  sha256(this.state.password).then((hash: string) => {
-    // this.handleLogin(this.state.username, hash);
     this.handleLogin(this.state.username, this.state.password);
-    // });
   }
 
   private handleLogin(username: string, password: string) {
@@ -104,7 +79,6 @@ export default class LoginView extends React.Component<any, IStateLogin> {
           username: '',
         });
         this.props.navigation.navigate('MapView');
-        //this.props.navigation.navigate('MapView');
       })
       .catch(async () => {
         this.showSnackBarMessage(this.state.languageService.get('wrong_login'));
@@ -155,7 +129,8 @@ export default class LoginView extends React.Component<any, IStateLogin> {
     return (
       <Fragment>
         <View style={styles.formView}>
-          <View>
+          <Image style={{ marginTop: -20, resizeMode: 'cover', width: Dimensions.get('screen').width, height: Dimensions.get('screen').height }} source={require('../../assets/background.jpeg')}></Image>
+          <View style={{ marginTop: 20, marginLeft: 40, alignContent: 'center', position: 'absolute', width: Dimensions.get('screen').width - 80 }}>
             <ScPicker
               selectedValue={this.state.currentLanguage}
               onChangeValue={(itemValue: Language) =>
@@ -176,134 +151,22 @@ export default class LoginView extends React.Component<any, IStateLogin> {
               secureTextEntry={true}
               onChangeText={this.onChangePassword.bind(this)}
             />
+            <View style={styles.textInput}>
+              <ScButton
+                text={this.state.languageService.get('login')}
+                onClick={this.onPressLoginButton.bind(this)}
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.textInput}>
-          <ScButton
-            text={this.state.languageService.get('login')}
-            onClick={this.onPressLoginButton.bind(this)}
-          />
-          <Text
-            style={styles.textStyle}
-            onPress={this.switchToRegister.bind(this)}>
-            {this.state.languageService.get('create_accont')}
-          </Text>
+          <View style={styles.bottom}>
+            <Text
+              style={styles.textStyle}
+              onPress={this.switchToRegister.bind(this)}>
+              {this.state.languageService.get('create_accont')}
+            </Text>
+          </View>
         </View>
       </Fragment>
     )
   }
 }
-
-const styles = StyleSheet.create({
-
-  formView: {
-    paddingTop: 20,
-    width: Dimensions.get('screen').width - 60,
-  },
-  textInput: {
-    padding: 10,
-    alignItems: 'center',
-  },
-  textStyle: {
-    paddingTop: 10,
-    fontSize: 15,
-    fontWeight: 'bold',
-    color: '#719192',
-    textDecorationLine: 'underline',
-  },
-
-});
-
-
-
-
-
-
-
-
-// const useStyles = makeStyles((theme: Theme) =>
-//   createStyles({
-//     container: {
-//       display: 'flex',
-//       flexWrap: 'wrap',
-//       width: 400,
-//       margin: `${theme.spacing(0)} auto`
-//     },
-//     loginBtn: {
-//       marginTop: theme.spacing(2),
-//       flexGrow: 1
-//     },
-//     header: {
-//       textAlign: 'center',
-//       background: '#212121',
-//       color: '#fff'
-//     },
-//     card: {
-//       marginTop: theme.spacing(10)
-//     }
-
-//   }),
-// );
-
-// const Login = () => {
-//   const classes = useStyles();
-//   const [username, setUsername] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-//   const [helperText, setHelperText] = useState('');
-//   const [error, setError] = useState(false);
-
-//   useEffect(() => {
-//     if (username.trim() && password.trim()) {
-//       setIsButtonDisabled(false);
-//     } else {
-//       setIsButtonDisabled(true);
-//     }
-//   }, [username, password]);
-
-//   const handleLogin = () => {
-//     if (username === 'abc@email.com' && password === 'password') {
-//       setError(false);
-//       setHelperText('Login Successfully');
-//     } else {
-//       setError(true);
-//       setHelperText('Incorrect username or password')
-//     }
-//   };
-
-//   const handleKeyPress = (e:any) => {
-//     if (e.keyCode === 13 || e.which === 13) {
-//       isButtonDisabled || handleLogin();
-//     }
-//   };
-/*
-  return (
-    <Fragment>
-        <View style={styles.formView}>
-              <ScTextInput
-                value={this.state.username}
-                placeHolder={this.state.languageService.get('usrname_email')}
-                icon={'mail'}
-                onChangeText={(e)=>setUsername(e.target.value)}
-              />
-              <ScTextInput
-                value={this.state.password}
-                placeHolder={this.state.languageService.get('password')}
-                icon={'lock'}
-                secureTextEntry={true}
-                onChangeText={(e)=>setPassword(e.target.value)}
-              />
-            </View>
-    </Fragment>
-  );
-}
-
-*/
-// const styles = StyleSheet.create({
-//     formView: {
-//         paddingTop: 20,
-//         width: Dimensions.get('screen').width - 60,
-//     },
-// });
-
-// export default Login;

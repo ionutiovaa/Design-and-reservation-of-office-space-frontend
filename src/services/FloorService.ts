@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 import { config } from '../config/config';
+import ILoc from '../data-models/Loc';
 
 export default class FloorService {
 
@@ -29,5 +30,18 @@ export default class FloorService {
             `${config.apiUrl}/etaje/createEtaj`
         );
     }
+
+    public static addPlace = async (loc: ILoc): Promise<ILoc> => {
+        const result = await axios.post(
+            `${config.apiUrl}/locuri/createLoc`,
+            loc,
+        );
+        return result.data;
+    }
+
+    public static getLocuriByEtaj = async (etaj: number): Promise<ILoc[]> => {
+        const result = await axios.get(`${config.apiUrl}/locuri/getLocuriByEtaj?etaj=` + etaj);
+        return result.data;
+    };
 
 }
